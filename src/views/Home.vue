@@ -1,18 +1,43 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="home-page">
+     <md-button class="md-dense md-raised md-primary">Raised</md-button>
   </div>
 </template>
-
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import axios from 'axios'
+import { csvToObject } from '@/assets/js/util.js'
+// https://cn.vuejs.org/v2/style-guide/#组件-实例的选项的顺序-推荐
 export default {
-  name: "home",
-  components: {
-    HelloWorld
+  name: 'Home',
+  components: {},
+  model: {},
+  props: {},
+  data() {
+    return {}
+  },
+  computed: {},
+  watch: {},
+  created() {
+    this.getNcovData()
+  },
+  mounted() {},
+  beforeDestroy() {},
+  methods: {
+    getNcovData() {
+      axios
+        .get('./data/ncov.csv')
+        .then(res => {
+          const { status, data } = res
+          if (status === 200) {
+            console.log(csvToObject(data))
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
   }
-};
+}
 </script>
+<style lang="scss" scoped>
+</style>
