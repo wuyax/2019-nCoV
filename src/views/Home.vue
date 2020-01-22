@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-     <md-button class="md-dense md-raised md-primary">Raised</md-button>
+     <md-button class="md-dense md-raised md-primary">测试UI</md-button>
   </div>
 </template>
 <script>
